@@ -3,22 +3,25 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 
 struct PtrToStr {
-    int string_length;
+    int64_t string_length;
     char *pointer_to_string;
 };
 
-char *BufMaker (const off_t buf_size);
+char *BufferMaker (const off_t buf_size);
+
+PtrToStr *PointersToStringsMaker (const int64_t number_of_strings);
 
 void FileToBuf (FILE *const text, char *const buffer, const off_t buf_size);
 
-size_t StringCounter (char *const buffer, const off_t buf_size);
+int64_t StringCounter (const char *const buffer, const off_t buf_size);
 
-void MakePointersToBuf (PtrToStr *const ptrs_to_strings, char *const buffer, off_t buf_size,
-                        size_t num_of_str);
+void SetPointersToBuf (PtrToStr *const ptrs_to_strings, char *const buffer, off_t buf_size,
+                       int64_t num_of_str);
 
-void rSymbolChecker (PtrToStr *const ptrs_to_strings, const size_t num_of_str);
+void rSymbolChecker (PtrToStr *const ptrs_to_strings, const int64_t num_of_str);
 
 
 #endif

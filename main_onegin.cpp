@@ -3,11 +3,15 @@
 #include <math.h>
 #include <sys\stat.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 #include "functions_for_input.h"
 #include "functions_for_output.h"
+#include "strings_sort.h"
 
 int main (void) {
+
+// ------------------------------------ Inputting part -----------------------------------------------------
 
     FILE *onegin = fopen ("onegin.txt", "rb");
 
@@ -16,7 +20,7 @@ int main (void) {
     struct stat onegin_stat;
     stat ("onegin.txt", &onegin_stat);
 
-    char *buf = BufMaker (onegin_stat.st_size);
+    char *buf = BufferMaker (onegin_stat.st_size);
 
     assert (buf);
 
@@ -24,19 +28,48 @@ int main (void) {
 
     fclose (onegin);
 
-    size_t number_of_strings = StringCounter (buf, onegin_stat.st_size);
+    int64_t number_of_strings = StringCounter (buf, onegin_stat.st_size);
 
-    PtrToStr *pointers_to_strings = (PtrToStr *) calloc (number_of_strings, sizeof (PtrToStr)); //TODO PtrMaker
-    MakePointersToBuf (pointers_to_strings, buf, onegin_stat.st_size, number_of_strings);
+    PtrToStr *pointers_to_strings = PointersToStringsMaker (number_of_strings);
 
-    //rSymbolChecker (pointers_to_strings, number_of_strings);
+    assert (pointers_to_strings);
+
+    SetPointersToBuf (pointers_to_strings, buf, onegin_stat.st_size, number_of_strings);
+
+    rSymbolChecker (pointers_to_strings, number_of_strings);
 
     FILE *evgenin = fopen ("evgenin.txt", "w");
 
-    PrintOriginal (pointers_to_strings, evgenin, number_of_strings);
+// ------------------------------------ Straight  sort -------------------------------------------------------
+
+    StringsSort (pointers_to_strings, number_of_strings, sizeof (PtrToStr), StringForwardComparator);
+
+    PrintAll (evgenin, pointers_to_strings, number_of_strings);
+
+    PrintLine (evgenin);
+
+// ------------------------------------ Backwards sort -------------------------------------------------------
+
+    StringsSort (pointers_to_strings, number_of_strings, sizeof (PtrToStr), StringBackwardComparator);
+
+    PrintAll (evgenin, pointers_to_strings, number_of_strings);
+
+    PrintLine (evgenin);
+
+// ------------------------------------ No sort --------------------------------------------------------------
+
+    PrintOriginal (evgenin, buf, onegin_stat.st_size);
+
+    PrintLine (evgenin);
+
+// ------------------------------------ Closing part ---------------------------------------------------------
 
     fclose (evgenin);
 
     free (buf);
+    buf = NULL;
+
     return 0;
 }
+
+//TODO find out how ptr to file works

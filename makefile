@@ -6,7 +6,7 @@ CXXFLAGS=-Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equ
 	 -Wempty-body -Wformat-security -Wformat=2 -Wignored-qualifiers -Wlogical-op -Wno-missing-field-initializers \
 	 -Wnon-virtual-dtor -Woverloaded-virtual -Wpointer-arith -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing \
 	 -Wstrict-null-sentinel -Wtype-limits -Wwrite-strings -Werror=vla -D_DEBUG -D_EJUDGE_CLIENT_SIDE
-SOURCES= main_onegin.cpp functions_for_input.cpp functions_for_output.cpp
+SOURCES= main_onegin.cpp functions_for_input.cpp functions_for_output.cpp strings_sort.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=OneginBullshitGen
 
