@@ -9,6 +9,6 @@ void PrintOriginal (FILE *const output_file, const char *const buffer, const off
 
 void PrintAll (FILE *const output_file, PtrToStr *const ptrs_to_strings, const int64_t num_of_str);
 
-void PrintLine (FILE *const output_file);
+void inline PrintLine (FILE *const output_file);
 
 #endif

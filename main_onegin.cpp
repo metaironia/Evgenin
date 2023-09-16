@@ -60,8 +60,6 @@ int main (void) {
 
     PrintOriginal (evgenin, buf, onegin_stat.st_size);
 
-    PrintLine (evgenin);
-
 // ------------------------------------ Closing part ---------------------------------------------------------
 
     fclose (evgenin);
