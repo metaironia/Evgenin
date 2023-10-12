@@ -13,12 +13,12 @@ int main (void) {
 
 // ------------------------------------ Inputting part -----------------------------------------------------
 
-    FILE *onegin = fopen ("onegin.txt", "rb");
+    FILE *onegin = fopen (FILE_NAME, "rb");                      //TODO fopen to fclose do func
 
     assert (onegin);
 
-    struct stat onegin_stat;
-    stat ("onegin.txt", &onegin_stat);
+    struct stat onegin_stat = {};        //TODO func
+    stat (FILE_NAME, &onegin_stat);
 
     char *buf = BufferMaker (onegin_stat.st_size);
 
@@ -36,7 +36,7 @@ int main (void) {
 
     SetPointersToBuf (pointers_to_strings, buf, onegin_stat.st_size, number_of_strings);
 
-    rSymbolChecker (pointers_to_strings, number_of_strings);
+    SlashRSymbolChecker (pointers_to_strings, number_of_strings);
 
     FILE *evgenin = fopen ("evgenin.txt", "w");
 
@@ -63,6 +63,7 @@ int main (void) {
 // ------------------------------------ Closing part ---------------------------------------------------------
 
     fclose (evgenin);
+    evgenin = NULL;
 
     free (buf);
     buf = NULL;

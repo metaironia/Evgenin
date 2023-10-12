@@ -26,7 +26,7 @@ PtrToStr *PointersToStringsMaker (const int64_t number_of_strings) {
 
     if (ptr_to_strings == NULL) {
 
-        fprintf (stderr, "Not enough memory. Program was finished.");
+        fprintf (stderr, "Not enough memory. Program was finished. You will go to the HELL.");
         return 0;
     }
 
@@ -39,7 +39,7 @@ void FileToBuf (FILE *const text, char *const buffer, const off_t buf_size) {
     assert (text);
 
     if (fread (buffer, sizeof (char), (int64_t) buf_size, text) != ((int64_t) buf_size))
-        assert (!"DEBIL! Use \"rb\" in fopen() when open the file with \"Onegin\" poem, please.");
+        assert (!"DEBIL! Use \"rb\" in fopen() when open the file with \"Onegin\" poem please.");
 
     //TODO fix type conversion bug
 
@@ -83,7 +83,7 @@ void SetPointersToBuf (PtrToStr *const ptrs_to_strings, char *const buffer, off_
     }
 }
 
-void rSymbolChecker (PtrToStr *const ptrs_to_strings, const int64_t num_of_str) {
+void SlashRSymbolChecker (PtrToStr *const ptrs_to_strings, const int64_t num_of_str) {
 
     assert (ptrs_to_strings);
 

@@ -15,9 +15,9 @@ int StringForwardComparator (const void *a, const void *b) {
     const PtrToStr *second_string_struct = (const PtrToStr *) b;
 
     return MyStrcmpForward((first_string_struct  -> pointer_to_string),
-                    (first_string_struct  -> string_length),
-                    (second_string_struct -> pointer_to_string),
-                    (second_string_struct -> string_length));
+                           (first_string_struct  -> string_length),
+                           (second_string_struct -> pointer_to_string),
+                           (second_string_struct -> string_length));
 }
 
 int StringBackwardComparator (const void *a, const void *b) {
@@ -26,13 +26,13 @@ int StringBackwardComparator (const void *a, const void *b) {
     const PtrToStr *second_string_struct = (const PtrToStr *) b;
 
     return MyStrcmpBackward((first_string_struct  -> pointer_to_string),
-                    (first_string_struct  -> string_length),
-                    (second_string_struct -> pointer_to_string),
-                    (second_string_struct -> string_length));
+                            (first_string_struct  -> string_length),
+                            (second_string_struct -> pointer_to_string),
+                            (second_string_struct -> string_length));
 }
 
 int MyStrcmpForward (const char *const first_string,  int64_t first_str_length,
-              const char *const second_string, int64_t second_str_length) {
+                     const char *const second_string, int64_t second_str_length) {
 
     int64_t first_str_index  = 0;
     int64_t second_str_index = 0;
@@ -74,13 +74,13 @@ int MyStrcmpForward (const char *const first_string,  int64_t first_str_length,
 
 
 int MyStrcmpBackward (const char *const first_string,  int64_t first_str_length,
-              const char *const second_string, int64_t second_str_length) {
+                      const char *const second_string, int64_t second_str_length) {
 
     int64_t first_str_index  = first_str_length;
     int64_t second_str_index = second_str_length;
 
     while (first_str_index >= 0 &&
-           ((char) (tolower(*(first_string + first_str_index))) > 'z' ||
+           ((char) (tolower(*(first_string + first_str_index))) > 'z' ||               //TODO isletter
             (char) (tolower(*(first_string + first_str_index))) < 'a')) {
 
         first_str_index--;
@@ -88,7 +88,7 @@ int MyStrcmpBackward (const char *const first_string,  int64_t first_str_length,
 
     while (second_str_index >= 0 &&
            ((char) (tolower(*(second_string + second_str_index))) > 'z' ||
-            (char) (tolower(*(second_string + second_str_index))) < 'a')) {
+            (char) (tolower(*(second_string + second_str_index))) < 'a')) {           //TODO make var to letters
 
         second_str_index--;
     }

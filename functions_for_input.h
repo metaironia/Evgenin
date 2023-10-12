@@ -5,6 +5,8 @@
 #include <string.h>
 #include <stdint.h>
 
+const char *FILE_NAME = "onegin.txt";
+
 struct PtrToStr {
     int64_t string_length;
     char *pointer_to_string;
@@ -21,7 +23,7 @@ int64_t StringCounter (const char *const buffer, const off_t buf_size);
 void SetPointersToBuf (PtrToStr *const ptrs_to_strings, char *const buffer, off_t buf_size,
                        int64_t num_of_str);
 
-void rSymbolChecker (PtrToStr *const ptrs_to_strings, const int64_t num_of_str);
+void SlashRSymbolChecker (PtrToStr *const ptrs_to_strings, const int64_t num_of_str);
 
 
 #endif
